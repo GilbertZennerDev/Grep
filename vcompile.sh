@@ -1,0 +1,1 @@
+cc *.c -Wall -Werror -Wextra /home/gzenner/active/libft/libft.a && clear && valgrind --leak-check=full ./a.out file b
