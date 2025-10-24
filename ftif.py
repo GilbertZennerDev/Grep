@@ -16,4 +16,6 @@ def ftif(filename, target):
     content = open(filename, 'r').read().splitlines()
     for i, line in enumerate(content):
         if target in line:
-            print(line, i)
+            print("Line", i, ":", line)
+            
+ftif(sys.argv[1], sys.argv[2])
