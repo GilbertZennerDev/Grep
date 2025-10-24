@@ -14,7 +14,7 @@
 
 void	minicalloc_char(char buffer[])
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < 1024)
@@ -23,23 +23,24 @@ void	minicalloc_char(char buffer[])
 
 void	findtargetinbuffer(t_data *data)
 {
-	data->line_index = 1;
 	data->i = 0;
-	while(data->buffer[data->i])
+	data->line_index = 1;
+	while (data->buffer[data->i])
 	{
 		data->j = 0;
 		if (data->buffer[data->i] == '\n')
 			++data->line_index;
-		while(data->buffer[data->i] == data->target[data->j])
+		while (data->buffer[data->i] == data->target[data->j])
 		{
 			++data->i;
 			++data->j;
 		}
 		if (data->target[data->j] == '\0')
 		{
-			while(data->i && data->buffer[data->i-1] != 10)
+			while (data->i && data->buffer[data->i - 1] != 10)
 				--data->i;
-			while(data->buffer[data->i] != 10 && data->i < ft_strlen(data->buffer))
+			while (data->buffer[data->i] != 10 \
+				&& data->i < ft_strlen(data->buffer))
 				printf("%c", data->buffer[data->i++]);
 			if (data->filename)
 				printf(": (%s)", data->filename);
@@ -49,14 +50,14 @@ void	findtargetinbuffer(t_data *data)
 	}
 }
 
-void ftif_filename(const char *filename, const char *target)
+void	ftif_filename(const char *filename, const char *target)
 {
 	t_data	data;
 
-	data.filename = ft_strdup(filename);
+	minicalloc_char(data.buffer);
 	data.target = ft_strdup(target);
 	data.fd = open(filename, O_RDONLY);
-	minicalloc_char(data.buffer);
+	data.filename = ft_strdup(filename);
 	data.bytes_read = read(data.fd, data.buffer, 1023);
 	findtargetinbuffer(&data);
 	free(data.filename);
@@ -64,9 +65,9 @@ void ftif_filename(const char *filename, const char *target)
 	close(data.fd);
 }
 
-void ftif(const char *target)
+void	ftif(const char *target)
 {
-	t_data data;	
+	t_data	data;
 
 	data.fd = 0;
 	data.target = ft_strdup(target);
@@ -81,7 +82,7 @@ void ftif(const char *target)
 	close(data.fd);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac == 2)
 		ftif(av[1]);
