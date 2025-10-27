@@ -10,6 +10,12 @@
 /*																			*/
 /* ************************************************************************** */
 
+/*let me shorten this code
+the main idea is that I just print the found lines 
+directly to the screen instead of storing them
+this way I can spare the storing and the callocing
+*/
+
 #include "ftif.h"
 
 void	minicalloc_char(char buffer[])
@@ -50,40 +56,53 @@ void	findtargetinbuffer(t_data *data)
 	}
 }
 
+// for reading from a file.
 void	ftif_filename(const char *filename, const char *target)
 {
 	t_data	data;
+	int		bytes_read;
 
 	minicalloc_char(data.buffer);
 	data.target = ft_strdup(target);
 	data.fd = open(filename, O_RDONLY);
 	data.filename = ft_strdup(filename);
-	data.bytes_read = read(data.fd, data.buffer, 1023);
+	bytes_read = read(data.fd, data.buffer, 1023);
 	findtargetinbuffer(&data);
 	free(data.filename);
 	free(data.target);
 	close(data.fd);
 }
 
+//for reading directly from stdin / pipe
 void	ftif(const char *target)
 {
 	t_data	data;
+	int		bytes_read;
 
 	data.fd = 0;
 	data.target = ft_strdup(target);
 	data.filename = NULL;
 	minicalloc_char(data.buffer);
-	data.bytes_read = read(data.fd, data.buffer, 1023);
-	if (data.bytes_read < 0)
+	bytes_read = read(data.fd, data.buffer, 1023);
+	if (bytes_read < 0)
+	{
 		perror("Input Reading Error");
-	if (data.bytes_read == 0)
+		exit(1);
+	}
+	if (bytes_read == 0)
+	{
 		perror("Input Empty Error");
+		exit(1);
+	}
 	findtargetinbuffer(&data);
 	close(data.fd);
 }
 
 int	main(int ac, char **av)
 {
+	t_data	data;
+
+	minicalloc_char(data.buffer);
 	if (ac == 2)
 		ftif(av[1]);
 	if (ac == 3)

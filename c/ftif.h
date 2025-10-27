@@ -6,7 +6,7 @@
 /*   By: gzenner <gzenner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 16:36:32 by gzenner           #+#    #+#             */
-/*   Updated: 2025/10/24 16:04:49 by gzenner          ###   ########.fr       */
+/*   Updated: 2025/10/27 08:34:10 by gzenner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_data
 	char			*target;
 	char			*filename;
 	char			buffer[1024];
-	int				bytes_read;
 	unsigned int	line_index;
 }	t_data;
 
