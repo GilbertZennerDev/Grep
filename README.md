@@ -88,5 +88,5 @@ python pyfind.py yourfile.txt keyword
 
 👨‍💻 Author
 
-Made with 🖤 and curiosity by [Your Name]
+Made with 🖤 and curiosity by [GilbertZennerDev]
 💬 “Sometimes, the simplest tools are the ones you use the most.”
