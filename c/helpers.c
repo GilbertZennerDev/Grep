@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftif.h                                             :+:      :+:    :+:   */
+/*   helpers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gzenner <gzenner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/28 16:36:32 by gzenner           #+#    #+#             */
-/*   Updated: 2025/10/27 08:53:09 by gzenner          ###   ########.fr       */
+/*   Created: 2025/10/27 08:48:31 by gzenner           #+#    #+#             */
+/*   Updated: 2025/10/27 08:53:11 by gzenner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FTIF_H
-# define FTIF_H
+#include "ftif.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <string.h>
-# include "/home/gzenner/active/libft/libft.h"
-
-typedef struct s_data
+void	minicalloc_char(char buffer[])
 {
 	unsigned int	i;
-	unsigned int	j;
-	int				fd;
-	char			*target;
-	char			*filename;
-	char			buffer[1024];
-	unsigned int	line_index;
-}	t_data;
 
-void	minicalloc_char(char buffer[]);
-void	closeonerror(int bytes_read);
+	i = 0;
+	while (i < 1024)
+		buffer[i++] = 0;
+}
 
-#endif
+void	closeonerror(int bytes_read)
+{
+	if (bytes_read > 0)
+		return ;
+	if (bytes_read < 0)
+		perror("Input Reading Error");
+	if (bytes_read == 0)
+		perror("Input Empty Error");
+	exit(1);
+}

@@ -12,15 +12,6 @@
 
 #include "ftif.h"
 
-void	minicalloc_char(char buffer[])
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < 1024)
-		buffer[i++] = 0;
-}
-
 void	findtargetinbuffer(t_data *data)
 {
 	data->i = 0;
@@ -53,12 +44,14 @@ void	findtargetinbuffer(t_data *data)
 void	ftif_filename(const char *filename, const char *target)
 {
 	t_data	data;
+	int		bytes_read;
 
 	minicalloc_char(data.buffer);
 	data.target = ft_strdup(target);
 	data.fd = open(filename, O_RDONLY);
 	data.filename = ft_strdup(filename);
-	data.bytes_read = read(data.fd, data.buffer, 1023);
+	bytes_read = read(data.fd, data.buffer, 1023);
+	closeonerror(bytes_read);
 	findtargetinbuffer(&data);
 	free(data.filename);
 	free(data.target);
@@ -68,16 +61,14 @@ void	ftif_filename(const char *filename, const char *target)
 void	ftif(const char *target)
 {
 	t_data	data;
+	int		bytes_read;
 
 	data.fd = 0;
 	data.target = ft_strdup(target);
 	data.filename = NULL;
 	minicalloc_char(data.buffer);
-	data.bytes_read = read(data.fd, data.buffer, 1023);
-	if (data.bytes_read < 0)
-		perror("Input Reading Error");
-	if (data.bytes_read == 0)
-		perror("Input Empty Error");
+	bytes_read = read(data.fd, data.buffer, 1023);
+	closeonerror(bytes_read);
 	findtargetinbuffer(&data);
 	close(data.fd);
 }
