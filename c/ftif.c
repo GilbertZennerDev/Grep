@@ -28,14 +28,8 @@ void	findtargetinbuffer(t_data *data)
 		}
 		if (data->target[data->j] == '\0')
 		{
-			while (data->i && data->buffer[data->i - 1] != 10)
-				--data->i;
-			while (data->buffer[data->i] != 10 \
-				&& data->i < ft_strlen(data->buffer))
-				printf("%c", data->buffer[data->i++]);
-			if (data->filename)
-				printf(": (%s)", data->filename);
-			printf("\n");
+			ft_browse_stream(data);
+			ft_print_substring(data);
 		}
 		++data->i;
 	}
@@ -50,7 +44,7 @@ void	ftif_filename(const char *filename, const char *target)
 	data.target = ft_strdup(target);
 	data.fd = open(filename, O_RDONLY);
 	data.filename = ft_strdup(filename);
-	bytes_read = read(data.fd, data.buffer, 1023);
+	bytes_read = read(data.fd, data.buffer, 1024);
 	closeonerror(bytes_read);
 	findtargetinbuffer(&data);
 	free(data.filename);
@@ -67,9 +61,10 @@ void	ftif(const char *target)
 	data.target = ft_strdup(target);
 	data.filename = NULL;
 	minicalloc_char(data.buffer);
-	bytes_read = read(data.fd, data.buffer, 1023);
+	bytes_read = read(data.fd, data.buffer, 1024);
 	closeonerror(bytes_read);
 	findtargetinbuffer(&data);
+	free(data.target);
 	close(data.fd);
 }
 
