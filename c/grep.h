@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ftif.h                                             :+:      :+:    :+:   */
+/*   grep.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gzenner <gzenner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/28 16:36:32 by gzenner           #+#    #+#             */
-/*   Updated: 2025/10/28 09:18:23 by gzenner          ###   ########.fr       */
+/*   Created: 2025/11/03 09:19:28 by gzenner           #+#    #+#             */
+/*   Updated: 2025/11/03 09:26:17 by gzenner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FTIF_H
-# define FTIF_H
+#ifndef GREP_H
+# define GREP_H
 
 # include <fcntl.h>
 # include <unistd.h>
@@ -30,6 +30,7 @@ typedef struct s_data
 	char			*sub;
 	unsigned int	start;
 	char			*target;
+	char			*mbuffer;
 	char			*filename;
 	unsigned int	line_index;
 	char			buffer[1024];

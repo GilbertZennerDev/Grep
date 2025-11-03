@@ -1,1 +1,1 @@
-cc *.c -Wall -Werror -Wextra /home/gzenner/active/libft/libft.a && clear && valgrind --leak-check=full ./a.out file b
+cc *.c -Wall -Werror -Wextra /home/gzenner/active/libft/libft.a -o mygrep && clear && valgrind --leak-check=full ./mygrep file b
