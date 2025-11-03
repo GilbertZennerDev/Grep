@@ -6,7 +6,7 @@
 /*   By: gzenner <gzenner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:19:28 by gzenner           #+#    #+#             */
-/*   Updated: 2025/11/03 09:26:17 by gzenner          ###   ########.fr       */
+/*   Updated: 2025/11/03 11:21:13 by gzenner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,13 @@ typedef struct s_data
 	char			*mbuffer;
 	char			*filename;
 	unsigned int	line_index;
-	char			buffer[1024];
+	char			buffer[1024 * 1024];
 }	t_data;
 
-void			minicalloc_char(char buffer[]);
 void			closeonerror(int bytes_read);
-void			ft_print_substring(t_data *data);
 void			ft_browse_stream(t_data *data);
+void			minicalloc_char(char buffer[]);
+void			ft_print_substring(t_data *data);
+int				ft_strstr(char *haystack, char *needle);
 
 #endif

@@ -1,3 +1,48 @@
-bbbbbv
-vvvvvvvvvb
-nnnnnnnnnnnvbn
+abc
+def
+ghi
+void	findtargetinbuffer(t_data *data)
+{
+	data->i = 0;
+	data->line_index = 1;
+	while (data->buffer[data->i])
+	{
+		data->j = 0;
+		if (data->buffer[data->i] == '\n')
+			++data->line_index;
+		while (data->buffer[data->i] == data->target[data->j])
+		{
+			++data->i;
+			++data->j;
+		}
+		if (data->target[data->j] == '\0')
+		{
+			ft_browse_stream(data);
+			ft_print_substring(data);
+		}
+		++data->i;
+	}
+}
+void	func2(t_data *data)
+{
+	data->i = 0;
+	data->line_index = 1;
+	while (data->buffer[data->i])
+	{
+		data->j = 0;
+		if (data->buffer[data->i] == '\n')
+			++data->line_index;
+		while (data->buffer[data->i] == data->target[data->j])
+		{
+			++data->i;
+			++data->j;
+		}
+		if (data->target[data->j] == '\0')
+		{
+			ft_browse_stream(data);
+			ft_print_substring(data);
+		}
+		++data->i;
+	}
+}
+tgb

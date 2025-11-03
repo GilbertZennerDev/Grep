@@ -6,7 +6,7 @@
 /*   By: gzenner <gzenner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:19:16 by gzenner           #+#    #+#             */
-/*   Updated: 2025/11/03 09:54:35 by gzenner          ###   ########.fr       */
+/*   Updated: 2025/11/03 11:19:23 by gzenner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,57 @@ then  use strchr to find the first newline
 then substr only that substring. Check for target.
 Then strdup the buffer without that substring, free the old str.
 Continue until buffer empty.
+
+more planning
+
+browsembuffer(data)
+takes the entire malloced buffer
+loop:
+searched for newline:
+if none found:
+it gives the pointer of the entire mbufffer to line
+else:
+it cuts the first line out of the mbuffer
+stores that snippet in line
+and gives mbuffer the rest as substring 
+
+now we got the line:
+now we just run a function which checks whether the word is in the string.
+there is a function in libft for that
+search needle in haystack (strstr)
+
+then it checks whether the searched word is in that line
+
+what is the name of my searched stuff
 */
 
-/*void	browsembuffer(t_data *data)
+void	browsembuffer(t_data *data)
 {
 	int		nl;
-	int		len;
 	char	*tmpbuffer;
 	char	*line;
 
 	nl = ft_strchr(data->mbuffer, '\n') - &data->mbuffer[0];
-	printf("nl: %d\n", nl);
-	if (nl == -1)
-	{
-		line = data->mbuffer;
-	}
-	else
+	while (nl >= 0)
 	{
 		line = ft_substr(data->mbuffer, 0, nl);
 		tmpbuffer = data->mbuffer;
-		len = strlen(data->mbuffer);
-		data->mbuffer = ft_substr(data->mbuffer, nl, len);
-		*ft_strnstr(data->mbuffer, )
+		data->mbuffer = ft_substr(data->mbuffer, nl + 1 \
+			, ft_strlen(data->mbuffer));
 		free(tmpbuffer);
+		if (ft_strstr(line, data->target) != -1)
+			printf("%s\n", line);
+		free(line);
+		nl = ft_strchr(data->mbuffer, '\n') - &data->mbuffer[0];
 	}
-}*/
-
+	if (nl < 0)
+	{
+		line = data->mbuffer;
+		if (ft_strstr(line, data->target) != -1)
+			printf("%s\n", line);
+	}
+}
+/* legacy
 void	findtargetinbuffer(t_data *data)
 {
 	data->i = 0;
@@ -66,7 +91,7 @@ void	findtargetinbuffer(t_data *data)
 		}
 		++data->i;
 	}
-}
+}*/
 
 void	ftif_filename(const char *filename, const char *target)
 {
@@ -77,10 +102,12 @@ void	ftif_filename(const char *filename, const char *target)
 	data.target = ft_strdup(target);
 	data.fd = open(filename, O_RDONLY);
 	data.filename = ft_strdup(filename);
-	bytes_read = read(data.fd, data.buffer, 1024);
+	bytes_read = read(data.fd, data.buffer, 1024 * 1024);
+	printf("bytes read: %d\n", bytes_read);
 	closeonerror(bytes_read);
 	data.mbuffer = ft_strdup(data.buffer);
-	findtargetinbuffer(&data);
+	browsembuffer(&data);
+	free(data.mbuffer);
 	free(data.filename);
 	free(data.target);
 	close(data.fd);
@@ -95,10 +122,11 @@ void	ftif(const char *target)
 	data.target = ft_strdup(target);
 	data.filename = NULL;
 	minicalloc_char(data.buffer);
-	bytes_read = read(data.fd, data.buffer, 1024);
+	bytes_read = read(data.fd, data.buffer, 1024 * 1024);
 	closeonerror(bytes_read);
 	data.mbuffer = ft_strdup(data.buffer);
-	findtargetinbuffer(&data);
+	browsembuffer(&data);
+	free(data.mbuffer);
 	free(data.target);
 	close(data.fd);
 }
