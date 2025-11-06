@@ -6,33 +6,31 @@
 /*   By: gzenner <gzenner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:19:28 by gzenner           #+#    #+#             */
-/*   Updated: 2025/11/04 16:19:08 by gzenner          ###   ########.fr       */
+/*   Updated: 2025/11/06 16:44:49 by gzenner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GREP_H
 # define GREP_H
-# include <fcntl.h>
-# include "/home/gzenner/active/libft/libft.h"
+# include <string>
+# include <iostream>
+# include <fstream>
 
 typedef struct s_data
 {
-	int				fd;
-	char			*target;
-	char			*mbuffer;
-	char			*filename;
-	char			buffer[1024 * 1024];
+	std::string		target;
+	std::string		mbuffer;
+	std::string		filename;
 }	t_data;
 
 class Grep
 {
 	public:
-		Grep();
-		~Grep();
+		void	grep_filename(const char *filename, const char *target);
+		void	grep(const char *target);
 	private:
 		void	closeonerror(int bytes_read);
-		void	minicalloc_char(char buffer[]);
-		int		ft_strstr(char *haystack, char *needle);
+		void	browsembuffer(t_data *data);
 };
 
 #endif

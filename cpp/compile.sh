@@ -1,1 +1,1 @@
-c++ *.cpp -Wall -Werror -Wextra /home/gzenner/active/libft/libft.a -o mygrep && clear && ./mygrep
+c++ *.cpp -Wall -Werror -Wextra -o mygrep && clear && ./mygrep
