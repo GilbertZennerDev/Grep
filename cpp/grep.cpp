@@ -6,7 +6,7 @@
 /*   By: gzenner <gzenner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 09:19:16 by gzenner           #+#    #+#             */
-/*   Updated: 2025/11/06 16:45:25 by gzenner          ###   ########.fr       */
+/*   Updated: 2025/11/06 16:49:43 by gzenner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ void	Grep::browsembuffer(t_data *data)
 	int			nl;
 	std::string	line;
 
-	nl = data->mbuffer.find('\n');
-	while (nl >= 0)
+	while ((nl = data->mbuffer.find('\n')) >= 0)
 	{
 		line = data->mbuffer.substr(0, nl);
-		data->mbuffer = data->mbuffer.substr(nl + 1);
 		printline(line, data->target);
-		nl = data->mbuffer.find('\n');
+		data->mbuffer = data->mbuffer.substr(nl + 1);
 	}
 	if (nl < 0) printline(data->mbuffer, data->target);
 }
