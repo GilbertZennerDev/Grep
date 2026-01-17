@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grep.cpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gzenner <gzenner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,6 @@
 
 #include <string>
 #include <vector>
-#include <sstream>
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -54,14 +53,7 @@ void grep(string target, string filename)
 	i = -1;
 	while (++i < content.size())
 	{
-		stringstream ss(content[i]);
-		while (getline(ss, t, ' '))
-		{
-			if (t == target)
-			{
-				cout << "Line " << i << ": " << content[i] << "\n";
-			}
-		}
+		if (content[i].find(target) != -1) cout << "Line " << i << ": " << content[i] << "\n";
 	}
 }
 
