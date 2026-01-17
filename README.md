@@ -1,6 +1,6 @@
-🔍📂 PyFind — A Tiny File Text Finder in Python
+🔍📂 Grep — A Tiny File Text Finder in Python
 
-Meet PyFind, your lightning-fast, ultra-simple command-line text search tool ⚡🐍
+Meet Grep, your lightning-fast, ultra-simple command-line text search tool ⚡🐍
 Search any file for a keyword — instantly see where it appears, with line numbers and context! 💡
 
 🚀 What It Does
@@ -11,7 +11,7 @@ It’s that easy.
 No dependencies. No setup. Just pure Python simplicity. ❤️
 
 💡 Example Usage
-python pyfind.py myfile.txt hello
+python Grep.py myfile.txt hello
 
 
 Output:
@@ -33,12 +33,12 @@ Line 15 : say hello to Python
 That’s it. Beautifully minimal. ✨
 
 🧩 Command Syntax
-python pyfind.py <filename> <search_term>
+python Grep.py <filename> <search_term>
 
 
 Example:
 
-python pyfind.py notes.txt TODO
+python Grep.py notes.txt TODO
 
 
 Output:
@@ -63,7 +63,7 @@ Line 24 : TODO: Add logging
 💡 Add file globbing (search across multiple files)
 
 🧩 Example in Action
-$ python pyfind.py script.py def
+$ python Grep.py script.py def
 Line 2 : def ftif(filename, target):
 Line 5 : def another_function():
 
@@ -75,9 +75,9 @@ Line 5 : def another_function():
 No installation needed!
 Just clone and run:
 
-git clone https://github.com/yourusername/pyfind.git
-cd pyfind
-python pyfind.py yourfile.txt keyword
+git clone https://github.com/yourusername/Grep.git
+cd Grep
+python Grep.py yourfile.txt keyword
 
 ❤️ Why It’s Awesome
 
@@ -87,6 +87,7 @@ python pyfind.py yourfile.txt keyword
 💻 A fun project that showcases Python’s elegance
 
 👨‍💻 Author
+Gilbert Zenner
 
 Made with 🖤 and curiosity by [GilbertZennerDev]
 💬 “Sometimes, the simplest tools are the ones you use the most.”
