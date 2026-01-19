@@ -12,17 +12,6 @@
 
 #include "grep.h"
 
-void	closeonerror(int bytes_read)
-{
-	if (bytes_read > 0)
-		return ;
-	if (bytes_read < 0)
-		perror("Input Reading Error");
-	if (bytes_read == 0)
-		perror("Input Empty Error");
-	exit(1);
-}
-
 void	minicalloc_char(char buffer[])
 {
 	unsigned int	i;
@@ -91,4 +80,23 @@ int	ft_strstr(char *haystack, char *needle)
 		++i;
 	}
 	return (-1);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	unsigned int	i;
+
+	i = 0;
+	if (dstsize > 0)
+	{
+		while (src[i] && i < (dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	while (src[i])
+		i++;
+	return (i);
 }

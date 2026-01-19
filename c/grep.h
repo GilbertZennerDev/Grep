@@ -12,8 +12,10 @@
 
 #ifndef GREP_H
 # define GREP_H
+# define READ_SIZE 1000000000
 # include <fcntl.h>
-# include "/home/gzenner/active/libft/libft.h"
+# include <string.h>
+# include <stdlib.h>
 
 typedef struct s_data
 {
@@ -21,11 +23,12 @@ typedef struct s_data
 	char			*target;
 	char			*mbuffer;
 	char			*filename;
-	char			buffer[1024 * 1024];
+	char			buffer[READ_SIZE];
 }	t_data;
 
 void			closeonerror(int bytes_read);
 void			minicalloc_char(char buffer[]);
 int				ft_strstr(char *haystack, char *needle);
+size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 
 #endif
